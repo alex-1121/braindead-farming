@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+def runeLiteVersion = 'latest.release'
+def pluginMainClass = 'com.braindeadfarming.BraindeadFarmingPluginTest'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://repo.runelite.net'
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+dependencies {
+    compileOnly group: 'net.runelite', name: 'client', version: runeLiteVersion
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation group: 'net.runelite', name: 'client', version: runeLiteVersion
+    testImplementation group: 'net.runelite', name: 'jshell', version: runeLiteVersion
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.register('run', JavaExec) {
+    group = 'application'
+    description = 'Run RuneLite with Braindead farming loaded in developer mode'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = pluginMainClass
+    jvmArgs '-ea', '--add-opens=java.desktop/com.apple.eawt=ALL-UNNAMED'
+    args '--developer-mode'
+}
