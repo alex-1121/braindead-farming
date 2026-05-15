@@ -40,8 +40,7 @@ public final class BankLocations
 
 		return BANKS.stream()
 			.min(Comparator
-				.comparingInt((BankLocation bank) -> bank.getWorldPoint().getPlane() == playerLocation.getPlane() ? 0 : 1)
-				.thenComparingInt(bank -> bank.getWorldPoint().distanceTo2D(playerLocation))
+				.comparingInt((BankLocation bank) -> bank.getWorldPoint().distanceTo2D(playerLocation))
 				.thenComparing(BankLocation::getName))
 			.orElse(DEFAULT_BANK);
 	}

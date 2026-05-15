@@ -124,7 +124,7 @@ Files:
 - `src/main/java/com/braindeadfarming/bank/BankLocation.java`
 
 - During `NEEDS_BANK_SYNC`, the plugin picks the closest known bank tile from a static MVP bank list.
-- The choice is based on current player tile using a simple same-plane + `distanceTo2D` heuristic.
+- The choice is based on current player tile using 2D tile distance only; plane/floor is ignored.
 - If the closest known bank changes while the player moves, the sidebar and Shortest Path target are refreshed.
 
 ## 7) Bank checklist generation
