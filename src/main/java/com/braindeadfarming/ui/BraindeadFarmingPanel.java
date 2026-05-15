@@ -134,7 +134,7 @@ public class BraindeadFarmingPanel extends PluginPanel
 			sb.append("Bank checklist:\n");
 			for (InventoryRequirements.RequiredItem item : requiredItems)
 			{
-				int have = item.have(bankInventoryTracker.getSnapshot());
+				int have = item.have(bankInventoryTracker.getHandSnapshot());
 				sb.append("- ").append(item.getLabel()).append(": ").append(have).append("/").append(item.getQuantity()).append("\n");
 			}
 			sb.append("\n");

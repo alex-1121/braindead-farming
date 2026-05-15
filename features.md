@@ -114,7 +114,8 @@ File: `src/main/java/com/braindeadfarming/bank/BankInventoryTracker.java`
 - Equipment
 
 ### Player-facing impact
-- The bank checklist in the panel uses the merged snapshot to show `have/need`.
+- Route planning uses the merged snapshot to choose travel methods from everything seen in bank, seed vault, inventory, and equipment.
+- The bank checklist in the panel uses the inventory/equipment-only snapshot to show carried `have/need`.
 - The bank overlay uses an inventory/equipment-only snapshot to hide bank outlines once the player is already carrying or wearing enough of a required item.
 - Teleport selection can prefer hint teleports if the required teleport item(s) are present.
 - Only bank and seed vault updates mark the run as bank-synced; inventory/equipment updates are tracked for counts only.
