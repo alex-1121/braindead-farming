@@ -38,6 +38,8 @@ import net.runelite.api.coords.WorldPoint;
 )
 public class BraindeadFarmingPlugin extends Plugin
 {
+	private static final int SHORTEST_PATH_DEFAULT_REACHED_DISTANCE = 5;
+
     @Inject
     private BraindeadFarmingConfig config;
 
@@ -151,6 +153,17 @@ public class BraindeadFarmingPlugin extends Plugin
 			}
 			else if (target != null)
 			{
+				if (hasReachedShortestPathTarget(lastPlayerLocation, target))
+				{
+					if (lastShortestPathTarget != null)
+					{
+						shortestPathIntegration.clearTarget();
+						lastShortestPathTarget = null;
+					}
+					shortestPathRefreshTicks = 0;
+					return;
+				}
+
 				boolean targetChanged = !target.equals(lastShortestPathTarget);
 				boolean shouldRefreshBankTarget = runStateManager.getState() == RunState.NEEDS_BANK_SYNC
 					&& ++shortestPathRefreshTicks >= 5;
@@ -228,6 +241,13 @@ public class BraindeadFarmingPlugin extends Plugin
 		return isBankSyncContainerId(containerId)
 			|| containerId == InventoryID.INVENTORY.getId()
 			|| containerId == InventoryID.EQUIPMENT.getId();
+	}
+
+	static boolean hasReachedShortestPathTarget(WorldPoint playerLocation, WorldPoint target)
+	{
+		return playerLocation != null
+			&& target != null
+			&& playerLocation.distanceTo(target) < SHORTEST_PATH_DEFAULT_REACHED_DISTANCE;
 	}
 
     @Provides

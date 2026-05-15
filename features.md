@@ -181,6 +181,7 @@ File: `src/main/java/com/braindeadfarming/navigation/ShortestPathIntegration.jav
   - If the run needs bank sync, the plugin attempts to set Shortest Path target to the closest known bank tile.
   - While bank sync is still needed, the plugin refreshes/retargets Shortest Path as the closest known bank changes.
   - After bank sync, the plugin attempts to set Shortest Path target to the current stop’s tile.
+  - If the player is already within Shortest Path’s default finish distance of the target tile, the plugin does not set or refresh that target.
 - Notes:
   - This uses RuneLite `PluginMessage` events for the external Shortest Path plugin (`shortestpath` namespace).
   - It may fail if Shortest Path changes its plugin-message contract.
@@ -192,4 +193,4 @@ File: `src/main/java/com/braindeadfarming/navigation/ShortestPathIntegration.jav
 - Hand-only inventory snapshot sanity: `src/test/java/com/braindeadfarming/bank/BankInventoryTrackerTest.java`
 - Closest bank selection sanity: `src/test/java/com/braindeadfarming/bank/BankLocationsTest.java`
 - Planner hint preference sanity: `src/test/java/com/braindeadfarming/route/RoutePlannerTest.java`
-- Container sync classification sanity: `src/test/java/com/braindeadfarming/BraindeadFarmingPluginContainerTest.java`
+- Container sync classification and Shortest Path arrival-distance sanity: `src/test/java/com/braindeadfarming/BraindeadFarmingPluginContainerTest.java`
