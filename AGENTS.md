@@ -14,7 +14,7 @@ This repo is a **v0.1 MVP skeleton**. It currently has:
 - Configurable seed choices, patch toggles, compost quantity, overlay visibility, and travel-method toggles.
 - A static dataset of 12 core locations: 6 tree patches and 6 fruit tree patches.
 - A simple inventory availability tracker for bank, seed vault, inventory, and equipment containers.
-- A bank checklist for saplings, spade, seed dibber, compost buckets, and selected teleport items.
+- A bank checklist for saplings, spade, seed dibber, tree-run axe/log basket, compost buckets, and selected teleport items.
 - A bank-first sync flow: when a route is planned before bank/seed vault data has been seen, the sidebar directs the player to the closest known bank and keeps patch instructions hidden until sync.
 - A route planner that filters configured locations and allowed travel methods, prefers user-hint teleports, checks item requirements, then applies a small adjacent-swap improvement pass using tile distance.
 - A manual run-state manager with no automatic patch completion detection.

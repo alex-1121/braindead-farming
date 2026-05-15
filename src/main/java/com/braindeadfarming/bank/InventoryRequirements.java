@@ -16,6 +16,41 @@ import net.runelite.api.ItemID;
 
 public final class InventoryRequirements
 {
+	private static final int[] AXE_ITEM_IDS = {
+		ItemID.BRONZE_AXE,
+		ItemID.IRON_AXE,
+		ItemID.STEEL_AXE,
+		ItemID.BLACK_AXE,
+		ItemID.MITHRIL_AXE,
+		ItemID.ADAMANT_AXE,
+		ItemID.RUNE_AXE,
+		ItemID.DRAGON_AXE,
+		ItemID.INFERNAL_AXE,
+		ItemID.INFERNAL_AXE_UNCHARGED,
+		ItemID._3RD_AGE_AXE,
+		ItemID.GILDED_AXE,
+		ItemID.CRYSTAL_AXE,
+		ItemID.CRYSTAL_AXE_INACTIVE,
+		ItemID.DRAGON_AXE_OR,
+		ItemID.ECHO_AXE,
+		ItemID.BRONZE_FELLING_AXE,
+		ItemID.IRON_FELLING_AXE,
+		ItemID.STEEL_FELLING_AXE,
+		ItemID.BLACK_FELLING_AXE,
+		ItemID.MITHRIL_FELLING_AXE,
+		ItemID.ADAMANT_FELLING_AXE,
+		ItemID.RUNE_FELLING_AXE,
+		ItemID.DRAGON_FELLING_AXE,
+		ItemID.CRYSTAL_FELLING_AXE,
+		ItemID.CRYSTAL_FELLING_AXE_INACTIVE,
+		ItemID._3RD_AGE_FELLING_AXE
+	};
+
+	private static final int[] LOG_BASKET_ITEM_IDS = {
+		ItemID.LOG_BASKET,
+		ItemID.OPEN_LOG_BASKET
+	};
+
 	private InventoryRequirements()
 	{
 	}
@@ -65,6 +100,12 @@ public final class InventoryRequirements
 
 		addSingle(merged, "Spade", ItemID.SPADE, 1);
 		addSingle(merged, "Seed dibber", ItemID.SEED_DIBBER, 1);
+
+		if (treeCount > 0)
+		{
+			addAny(merged, "Axe", 1, AXE_ITEM_IDS);
+			addAny(merged, "Log basket", 1, LOG_BASKET_ITEM_IDS);
+		}
 
 		if (config.useCompost() && config.compostQuantityPerPatch() > 0)
 		{

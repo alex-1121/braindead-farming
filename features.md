@@ -136,7 +136,10 @@ File: `src/main/java/com/braindeadfarming/bank/InventoryRequirements.java`
 - Saplings:
   - Tree saplings: quantity equals number of enabled TREE patches
   - Fruit tree saplings: quantity equals number of enabled FRUIT_TREE patches
-- Tools: spade + seed dibber (always 1 each)
+- Tools:
+  - Spade + seed dibber (always 1 each)
+  - Axe + log basket when the route includes TREE patches
+  - Axe accepts normal and felling axe variants; log basket accepts open and closed variants
 - Compost: bucket compost multiplied by (tree+fruit patch count) × `compostQuantityPerPatch()`
 - Teleport items:
   - Collected from chosen teleports’ requirements
