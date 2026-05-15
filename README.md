@@ -8,8 +8,8 @@ No more need for planning your farming runs. Braindead Farming does it for you, 
 - `src/main/resources/runelite-plugin.properties` – plugin-hub metadata.
 
 ## Build
-Use your local Gradle installation:
+Use the Gradle wrapper:
 
 ```bash
-gradle build
+./gradlew build
 ```
