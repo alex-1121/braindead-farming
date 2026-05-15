@@ -59,7 +59,14 @@ public class BankHighlightOverlay extends WidgetItemOverlay
 		}
 
 		int have = req.have(bankInventoryTracker.getSnapshot());
+		int haveInHand = req.have(bankInventoryTracker.getHandSnapshot());
 		int need = req.getQuantity();
+		int remaining = need - haveInHand;
+
+		if (remaining <= 0)
+		{
+			return;
+		}
 
 		Color color;
 		if (have >= need)

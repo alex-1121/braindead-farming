@@ -115,6 +115,7 @@ File: `src/main/java/com/braindeadfarming/bank/BankInventoryTracker.java`
 
 ### Player-facing impact
 - The bank checklist in the panel uses the merged snapshot to show `have/need`.
+- The bank overlay uses an inventory/equipment-only snapshot to hide bank outlines once the player is already carrying or wearing enough of a required item.
 - Teleport selection can prefer hint teleports if the required teleport item(s) are present.
 - Only bank and seed vault updates mark the run as bank-synced; inventory/equipment updates are tracked for counts only.
 
@@ -165,10 +166,11 @@ File: `src/main/java/com/braindeadfarming/overlay/BankHighlightOverlay.java`
 
 ### What you should see
 - When viewing the bank and `showOverlay` is enabled:
-  - Required items in the bank get a colored outline:
+  - Required items still needing withdrawal get a colored outline:
     - Green: requirement met (have >= need)
     - Amber: partially met (0 < have < need)
     - Red: missing (have == 0)
+  - Items already satisfied by inventory/equipment are not outlined in the bank.
 
 ## 11) Shortest Path integration (best-effort)
 File: `src/main/java/com/braindeadfarming/navigation/ShortestPathIntegration.java`
@@ -186,6 +188,7 @@ File: `src/main/java/com/braindeadfarming/navigation/ShortestPathIntegration.jav
 - Core dataset sanity: `src/test/java/com/braindeadfarming/data/CoreLocationsTest.java`
 - Hint teleports present: `src/test/java/com/braindeadfarming/data/TeleportHintsTest.java`
 - Checklist generation sanity: `src/test/java/com/braindeadfarming/bank/InventoryRequirementsTest.java`
+- Hand-only inventory snapshot sanity: `src/test/java/com/braindeadfarming/bank/BankInventoryTrackerTest.java`
 - Closest bank selection sanity: `src/test/java/com/braindeadfarming/bank/BankLocationsTest.java`
 - Planner hint preference sanity: `src/test/java/com/braindeadfarming/route/RoutePlannerTest.java`
 - Container sync classification sanity: `src/test/java/com/braindeadfarming/BraindeadFarmingPluginContainerTest.java`

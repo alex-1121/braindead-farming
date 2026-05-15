@@ -38,6 +38,21 @@ public class BankInventoryTracker
 		snapshot = ItemAvailabilitySnapshot.empty();
 	}
 
+	public ItemAvailabilitySnapshot getHandSnapshot()
+	{
+		Map<Integer, Integer> merged = new HashMap<>();
+		for (int id : new int[]{ InventoryID.INVENTORY.getId(), InventoryID.EQUIPMENT.getId() })
+		{
+			Map<Integer, Integer> quantities = perContainerQuantities.get(id);
+			if (quantities != null)
+			{
+				quantities.forEach((itemId, quantity) -> merged.merge(itemId, quantity, Integer::sum));
+			}
+		}
+
+		return new ItemAvailabilitySnapshot(merged);
+	}
+
 	@Subscribe
 	public void onItemContainerChanged(ItemContainerChanged event)
 	{
@@ -128,4 +143,3 @@ public class BankInventoryTracker
 		snapshot = new ItemAvailabilitySnapshot(merged);
 	}
 }
-
